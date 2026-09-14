@@ -1,0 +1,49 @@
+name: EASOP CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  backend-quality:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies and application
+        run: |
+          if [ -f requirements-dev.lock ]; then
+            python -m pip install -r requirements-dev.lock
+            python -m pip install --no-deps --no-build-isolation -e .
+          else
+            python -m pip install -e ".[dev]"
+          fi
+
+      - name: Check formatting
+        run: python -m ruff format --check src tests
+
+      - name: Lint
+        run: python -m ruff check src tests
+
+      - name: Check types
+        run: python -m mypy src tests
+
+      - name: Test API contract
+        run: python -m pytest -q
+
+      - name: Build wheel and source distribution
+        run: python -m build --no-isolation
