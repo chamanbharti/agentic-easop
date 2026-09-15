@@ -1,15 +1,16 @@
 """Validated contracts for support request intake."""
 
-from enum import StrEnum
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from datetime import datetime
 
-class SupportCategory(StrEnum):
-    GENERAL = "general"
-    ORDER = "order"
-    BILLING = "billing"
+# from easop.domain.support_case import CaseStatus
+
+# from easop.domain.support_case import CaseStatus
+from easop.api.case_status import CaseStatus
+from easop.domain.support_category import SupportCategory
 
 
 class SupportRequest(BaseModel):
@@ -32,3 +33,12 @@ class SupportRequest(BaseModel):
 class SupportValidationResponse(BaseModel):
     valid: Literal[True]
     request: SupportRequest
+
+
+class SupportCaseResponse(BaseModel):
+    case_id: str
+    customer_id: str
+    message: str
+    category: SupportCategory
+    status: CaseStatus
+    created_at: datetime
