@@ -11,6 +11,6 @@ for below code:
 """EASOP backend package."""
 
 # Try below command:
-# Run Ruff without --check  
+# Run Ruff without --check
 Let Ruff automatically reformat:
 python -m ruff format src tests

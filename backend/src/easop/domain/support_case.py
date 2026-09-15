@@ -2,11 +2,12 @@
 
 from dataclasses import dataclass
 from datetime import datetime
+
 # from enum import StrEnum
-
 from easop.api.case_status import CaseStatus
-from easop.schemas.support import SupportCategory
+from easop.domain.support_category import SupportCategory
 
+# from easop.schemas.support import SupportCategory
 
 # class CaseStatus(StrEnum):
 #     OPEN = "open"

@@ -1,13 +1,11 @@
 """Validated contracts for support request intake."""
 
+from datetime import datetime
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from datetime import datetime
-
 # from easop.domain.support_case import CaseStatus
-
 # from easop.domain.support_case import CaseStatus
 from easop.api.case_status import CaseStatus
 from easop.domain.support_category import SupportCategory

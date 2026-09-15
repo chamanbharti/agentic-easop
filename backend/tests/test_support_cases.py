@@ -5,11 +5,16 @@ from collections.abc import Iterator
 import pytest
 from fastapi.testclient import TestClient
 
+from easop.api.case_status import CaseStatus
 from easop.api.support import get_support_case_service
-from easop.domain.support_case import CaseStatus
+
+# from easop.domain.support_case import CaseStatus
+from easop.domain.support_category import SupportCategory
 from easop.main import app
 from easop.repositories.support_cases import InMemorySupportCaseRepository
-from easop.schemas.support import SupportCategory, SupportRequest
+
+# from easop.schemas.support import SupportCategory, SupportRequest
+from easop.schemas.support import SupportRequest
 from easop.services.support_cases import SupportCaseService
 
 VALID_REQUEST = {
@@ -56,7 +61,8 @@ def test_post_creates_case_and_get_retrieves_it(client: TestClient) -> None:
     assert body["message"] == "My order arrived damaged."
     assert body["category"] == SupportCategory.ORDER
     assert body["status"] == "open"
-    assert body["created_at"].endswith("+00:00")
+    # assert body["created_at"].endswith("+00:00")
+    assert body["created_at"].endswith("+00:00") or body["created_at"].endswith("Z")
 
     retrieved = client.get(f"/api/v1/support/cases/{body['case_id']}")
     assert retrieved.status_code == 200

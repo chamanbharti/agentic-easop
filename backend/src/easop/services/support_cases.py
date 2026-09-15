@@ -1,9 +1,10 @@
 """Support-case business operations."""
 
-from datetime import datetime, UTC
+from datetime import UTC, datetime
 from uuid import uuid4
 
-from easop.domain.support_case import CaseStatus, SupportCase
+from easop.api.case_status import CaseStatus
+from easop.domain.support_case import SupportCase
 from easop.repositories.support_cases import SupportCaseRepository
 from easop.schemas.support import SupportRequest
 
