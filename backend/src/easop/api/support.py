@@ -3,7 +3,7 @@
 from functools import lru_cache
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, status
 
 from easop.domain.support_case import SupportCase
 from easop.repositories.support_cases import InMemorySupportCaseRepository
@@ -55,15 +55,19 @@ def create_support_case(
     return to_response(case)
 
 
+# @router.get("/cases/{case_id}", response_model=SupportCaseResponse)
+# def get_support_case(
+#     case_id: str,
+#     service: Annotated[SupportCaseService, Depends(get_support_case_service)],
+# ) -> SupportCaseResponse:
+#     case = service.get(case_id)
+#     return to_response(case)
+
+
 @router.get("/cases/{case_id}", response_model=SupportCaseResponse)
 def get_support_case(
     case_id: str,
     service: Annotated[SupportCaseService, Depends(get_support_case_service)],
 ) -> SupportCaseResponse:
-    case = service.get(case_id)
-    if case is None:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Support case not found",
-        )
+    case = service.get_required(case_id)
     return to_response(case)

@@ -40,3 +40,9 @@ class SupportCaseResponse(BaseModel):
     category: SupportCategory
     status: CaseStatus
     created_at: datetime
+
+
+class ApiErrorResponse(BaseModel):
+    code: str
+    message: str
+    request_id: str

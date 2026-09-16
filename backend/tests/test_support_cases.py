@@ -10,6 +10,7 @@ from easop.api.support import get_support_case_service
 
 # from easop.domain.support_case import CaseStatus
 from easop.domain.support_category import SupportCategory
+from easop.exceptions import SupportCaseNotFoundError
 from easop.main import app
 from easop.repositories.support_cases import InMemorySupportCaseRepository
 
@@ -73,7 +74,12 @@ def test_unknown_case_returns_404(client: TestClient) -> None:
     response = client.get("/api/v1/support/cases/CASE-unknown")
 
     assert response.status_code == 404
-    assert response.json() == {"detail": "Support case not found"}
+    # assert response.json() == {"detail": "Support case not found"}
+    body = response.json()
+
+    assert body["code"] == "SUPPORT_CASE_NOT_FOUND"
+    assert body["message"] == "Support case CASE-unknown was not found"
+    assert body["request_id"] == response.headers["X-Request-ID"]
 
 
 def test_invalid_input_does_not_create_a_case(client: TestClient) -> None:
@@ -90,3 +96,13 @@ def test_two_posts_create_distinct_cases(client: TestClient) -> None:
 
     assert first.status_code == second.status_code == 201
     assert first.json()["case_id"] != second.json()["case_id"]
+
+
+def test_get_required_raises_when_case_does_not_exist() -> None:
+    service = SupportCaseService(InMemorySupportCaseRepository())
+
+    with pytest.raises(
+        SupportCaseNotFoundError,
+        match="Support case CASE-unknown was not found",
+    ):
+        service.get_required("CASE-unknown")
