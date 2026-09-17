@@ -23,6 +23,7 @@ dev = [
     "pip-tools",
     "setuptools>=68",
     "wheel",
+    "scikit-learn",
 ]
 
 [tool.setuptools.packages.find]
@@ -38,6 +39,13 @@ select = ["E", "F", "I", "B", "UP"]
 [tool.mypy]
 python_version = "3.11"
 strict = true
+
+[[tool.mypy.overrides]]
+module = [
+    "sklearn",
+    "sklearn.*",
+]
+ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

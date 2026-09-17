@@ -1,0 +1,36 @@
+{"text":"Where can I find your privacy policy?","label":"general"}
+{"text":"How do I update my contact information?","label":"general"}
+{"text":"What time is customer support available?","label":"general"}
+{"text":"I need help understanding the return policy","label":"general"}
+{"text":"How can I speak with a support representative?","label":"general"}
+{"text":"Where are your service centers located?","label":"general"}
+{"text":"Can you explain the warranty terms?","label":"general"}
+{"text":"I want to change the email on my account","label":"general"}
+{"text":"How do I reset my account password?","label":"general"}
+{"text":"Please explain how your loyalty program works","label":"general"}
+{"text":"What languages does customer support provide?","label":"general"}
+{"text":"How can I close my customer account?","label":"general"}
+{"text":"My order has not arrived yet","label":"order"}
+{"text":"The package was delivered to the wrong address","label":"order"}
+{"text":"I received a damaged product in my delivery","label":"order"}
+{"text":"Please tell me the current delivery status","label":"order"}
+{"text":"I want to cancel an order placed this morning","label":"order"}
+{"text":"One item is missing from my package","label":"order"}
+{"text":"The tracking number does not show any updates","label":"order"}
+{"text":"I received the wrong product in my shipment","label":"order"}
+{"text":"Can I change the delivery address for my order?","label":"order"}
+{"text":"My shipment is delayed beyond the promised date","label":"order"}
+{"text":"Why was my order automatically cancelled?","label":"order"}
+{"text":"The courier says delivered but I have no package","label":"order"}
+{"text":"I was charged twice for the same purchase","label":"billing"}
+{"text":"My invoice contains an incorrect amount","label":"billing"}
+{"text":"The refund is not visible in my bank account","label":"billing"}
+{"text":"Please send me a copy of my invoice","label":"billing"}
+{"text":"Why was an additional fee added to my payment?","label":"billing"}
+{"text":"My card payment failed but money was deducted","label":"billing"}
+{"text":"I do not recognize this charge on my account","label":"billing"}
+{"text":"How long will the refund payment take?","label":"billing"}
+{"text":"The tax amount on my invoice appears incorrect","label":"billing"}
+{"text":"My discount was not applied to the final bill","label":"billing"}
+{"text":"I need to update the payment method","label":"billing"}
+{"text":"Why is the billed total different from checkout?","label":"billing"}
